@@ -60,10 +60,21 @@ flutter:
         - asset: assets/fonts/Lato-Regular.ttf
         - asset: assets/fonts/Lato-Italic.ttf
           style: italic
-        # - asset: fonts/Lato-Light.ttf
-        #   style: w400
+        - asset: assets/fonts/Lato-Light.ttf
+          weight: 300
         - asset: assets/fonts/Lato-Bold.ttf
           weight: 700
+    - family: ZillaSlab
+      fonts:
+        - asset: assets/fonts/ZillaSlab-Regular.ttf
+        - asset: assets/fonts/ZillaSlab-Italic.ttf
+          style: italic
+        - asset: assets/fonts/ZillaSlab-Light.ttf
+          weight: 300
+        - asset: assets/fonts/ZillaSlab-Medium.ttf
+          weight: 700
+        - asset: assets/fonts/ZillaSlab-Bold.ttf
+          weight: 900
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
