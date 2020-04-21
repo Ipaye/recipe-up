@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Meal Planner',
       theme: ThemeData(
-        fontFamily: 'Lato',
+        fontFamily: 'ZillaSlab',
         primarySwatch: Colors.amber,
         accentColor: Colors.blue,
       ),
