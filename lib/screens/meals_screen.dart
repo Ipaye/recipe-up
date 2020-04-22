@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodapp/widgets/meal_item.dart';
 
 import './../mock.dart';
 
@@ -23,7 +24,13 @@ class MealScreen extends StatelessWidget {
       body: ListView.builder(
           itemCount: categoryMeals.length,
           itemBuilder: (context, index) {
-            return Text(categoryMeals[index].title);
+            return MealItem(
+                mealId: categoryMeals[index].id,
+                mealImageUrl: categoryMeals[index].imageUrl,
+                mealDuration: categoryMeals[index].duration,
+                mealComplexity: categoryMeals[index].complexity,
+                mealTitle: categoryMeals[index].title,
+                mealAffordability: categoryMeals[index].affordability);
           }),
     );
   }
