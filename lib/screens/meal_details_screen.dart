@@ -46,10 +46,22 @@ class MealDetailSceen extends StatelessWidget {
                 child: ListView.builder(
                     itemCount: selectedMeal.ingredients.length,
                     itemBuilder: (context, index) {
-                      return Text(
-                          '${index + 1}.  ${selectedMeal.ingredients[index]}',
-                          style: TextStyle(
-                              fontSize: 17, height: 2, color: Colors.black));
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                              '${index + 1}.  ${selectedMeal.ingredients[index]}',
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  height: 2,
+                                  color: Colors.black)),
+                          Divider(
+                            thickness: 1,
+                            height: 1,
+                            color: Colors.black54,
+                          ),
+                        ],
+                      );
                     }),
               ),
               Container(
@@ -70,9 +82,20 @@ class MealDetailSceen extends StatelessWidget {
                 child: ListView.builder(
                     itemCount: selectedMeal.steps.length,
                     itemBuilder: (context, index) {
-                      return Text('${index + 1}.  ${selectedMeal.steps[index]}',
-                          style: TextStyle(
-                              fontSize: 17, height: 2, color: Colors.black));
+                      return Column(
+                        children: <Widget>[
+                          Text('${index + 1}.  ${selectedMeal.steps[index]}',
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  height: 2,
+                                  color: Colors.black)),
+                          Divider(
+                            thickness: 1,
+                            height: 1,
+                            color: Colors.black54,
+                          ),
+                        ],
+                      );
                     }),
               ),
             ],
