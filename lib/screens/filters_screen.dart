@@ -4,6 +4,11 @@ import '../widgets/main_drawer.dart';
 class FilterScreen extends StatefulWidget {
   static const routeName = 'filters';
 
+  final Function saveFilters;
+  final Map<String, bool> filters;
+
+  FilterScreen(this.filters, this.saveFilters);
+
   @override
   _FilterScreenState createState() => _FilterScreenState();
 }
@@ -13,6 +18,14 @@ class _FilterScreenState extends State<FilterScreen> {
   var _isVegan = false;
   var _isVegetarian = false;
   var _isLactoseFree = false;
+
+  @override
+  initState() {
+    _isGlutenFree = widget.filters['glutten'];
+    _isVegan = widget.filters['vegan'];
+    _isVegetarian = widget.filters['vegetarian'];
+    _isLactoseFree = widget.filters['lactose'];
+  }
 
   Widget displaySwitchTiles(
       {bool value, String title, String subtitle, Function onChangeHandler}) {
@@ -34,6 +47,19 @@ class _FilterScreenState extends State<FilterScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Filter Resturant'),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.save),
+              onPressed: () {
+                final selectedFIlters = {
+                  'glutten': _isGlutenFree,
+                  'lactose': _isLactoseFree,
+                  'vegan': _isVegan,
+                  'vegetarian': _isVegetarian
+                };
+                widget.saveFilters(selectedFIlters);
+              })
+        ],
       ),
       drawer: MainDrawer(),
       body: Column(
@@ -58,7 +84,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   subtitle: 'Filter for glutten free meals.',
                   onChangeHandler: (value) {
                     setState(() {
-                      value = _isGlutenFree;
+                      _isGlutenFree = value;
                     });
                   }),
               displaySwitchTiles(
@@ -67,7 +93,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   subtitle: 'Filter for lactose free meals.',
                   onChangeHandler: (value) {
                     setState(() {
-                      value = _isLactoseFree;
+                      _isLactoseFree = value;
                     });
                   }),
               displaySwitchTiles(
@@ -76,7 +102,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   subtitle: 'Filter for vegan free meals.',
                   onChangeHandler: (value) {
                     setState(() {
-                      value = _isVegan;
+                      _isVegan = value;
                     });
                   }),
               displaySwitchTiles(
@@ -85,7 +111,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   subtitle: 'Filter for vegetarian free meals.',
                   onChangeHandler: (value) {
                     setState(() {
-                      value = _isVegetarian;
+                      _isVegetarian = value;
                     });
                   }),
             ]),
