@@ -10,15 +10,21 @@ class FilterScreen extends StatefulWidget {
 
 class _FilterScreenState extends State<FilterScreen> {
   var _isGlutenFree = false;
-  var _isVegan = true;
-  var _isVegetarian = true;
-  var _isLactoseFree = true;
+  var _isVegan = false;
+  var _isVegetarian = false;
+  var _isLactoseFree = false;
 
   Widget displaySwitchTiles(
       {bool value, String title, String subtitle, Function onChangeHandler}) {
     return SwitchListTile(
         value: value,
-        title: Text(title),
+        title: Text(
+          title,
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 17,
+          ),
+        ),
         subtitle: Text(subtitle),
         onChanged: onChangeHandler);
   }
@@ -33,9 +39,15 @@ class _FilterScreenState extends State<FilterScreen> {
       body: Column(
         children: <Widget>[
           Container(
-            child: Text(
-              'Filter out the kind of meal you want',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                'Filter out the kind of meal you want',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                    fontFamily: 'ZillaSlab'),
+              ),
             ),
           ),
           Expanded(
@@ -60,7 +72,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   }),
               displaySwitchTiles(
                   value: _isVegan,
-                  title: 'Gutten',
+                  title: 'Vegan',
                   subtitle: 'Filter for vegan free meals.',
                   onChangeHandler: (value) {
                     setState(() {
@@ -69,7 +81,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   }),
               displaySwitchTiles(
                   value: _isVegetarian,
-                  title: 'Gutten',
+                  title: 'Vegetarian',
                   subtitle: 'Filter for vegetarian free meals.',
                   onChangeHandler: (value) {
                     setState(() {
