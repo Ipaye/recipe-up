@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodapp/widgets/main_drawer.dart';
 
 import './categories_screen.dart';
 import './favourite_screen.dart';
@@ -53,6 +54,7 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(_pages[_selectedPageIndex]['title']),
       ),
+      drawer: MainDrawer(),
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) => _selectPage(index),
@@ -60,8 +62,8 @@ class _TabsScreenState extends State<TabsScreen> {
         selectedItemColor: Theme.of(context).accentColor,
         unselectedItemColor: Colors.black,
         currentIndex: _selectedPageIndex,
-        selectedFontSize: 18,
-        unselectedFontSize: 16,
+        selectedFontSize: 15,
+        unselectedFontSize: 14,
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.category), title: Text('Categories')),
