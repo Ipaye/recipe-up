@@ -33,7 +33,10 @@ class _FilterScreenState extends State<FilterScreen> {
       body: Column(
         children: <Widget>[
           Container(
-            child: Text('Filter out what you dont want'),
+            child: Text(
+              'Filter out the kind of meal you want',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+            ),
           ),
           Expanded(
             child: Column(children: <Widget>[
