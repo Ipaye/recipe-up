@@ -1,19 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:foodapp/widgets/main_drawer.dart';
+import '../models/meal.dart';
+import '../widgets/main_drawer.dart';
 
 import './categories_screen.dart';
 import './favourite_screen.dart';
 
 class TabsScreen extends StatefulWidget {
+  final List<Meal> favouriteMeals;
+
+  TabsScreen(this.favouriteMeals);
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  final List<Map<String, Object>> _pages = [
-    {'page': CategoriesScreen(), 'title': 'Recipe Categories'},
-    {'page': FavouriteScreen(), 'title': 'Favourite Recipes'}
-  ];
+  List<Map<String, Object>> _pages;
+
+  @override
+  initState() {
+    _pages = [
+      {'page': CategoriesScreen(), 'title': 'Recipe Categories'},
+      {
+        'page': FavouriteScreen(widget.favouriteMeals),
+        'title': 'Favourite Recipes'
+      }
+    ];
+  }
 
   int _selectedPageIndex = 0;
 
@@ -23,33 +35,38 @@ class _TabsScreenState extends State<TabsScreen> {
     });
   }
 
+  // How to implement tabs without using a stateful widget
+  Widget tabsScreenWithoutState() {
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Meals'),
+          bottom: TabBar(
+            tabs: <Widget>[
+              Tab(
+                icon: Icon(Icons.category),
+                text: 'Categories',
+              ),
+              Tab(
+                icon: Icon(Icons.star),
+                text: 'Favourites',
+              ),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: <Widget>[
+            CategoriesScreen(),
+            FavouriteScreen(widget.favouriteMeals)
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    // return DefaultTabController(
-    //   length: 2,
-    //   child: Scaffold(
-    //     appBar: AppBar(
-    //       title: Text('Meals'),
-    //       bottom: TabBar(
-
-    //         tabs: <Widget>[
-    //           Tab(
-    //             icon: Icon(Icons.category),
-    //             text: 'Categories',
-    //           ),
-    //           Tab(
-    //             icon: Icon(Icons.star),
-    //             text: 'Favourites',
-    //           ),
-    //         ],
-    //       ),
-    //     ),
-    //     body: TabBarView(
-    //       children: <Widget>[CategoriesScreen(), FavouriteScreen()],
-    //     ),
-    //   ),
-    // );
-
     return Scaffold(
       appBar: AppBar(
         title: Text(_pages[_selectedPageIndex]['title']),
